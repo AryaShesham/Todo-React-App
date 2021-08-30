@@ -1,38 +1,206 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'CopperPlate Gothic Light', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: linear-gradient(
+    90deg,
+    rgb(209, 207, 228) 0%,
+    rgb(21, 21, 24) 100%
+  );
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.todo-main {
   display: flex;
   flex-direction: column;
+  justify-content: start;
+  width: 520px;
+  min-height: 600px;
+  background: #9c9c9c21;
+  text-align: center;
+  margin: 51px auto;
+  border-radius: 10px;
+  padding-bottom: 32px;
+}
+
+h1 {
+  margin-top: 5px;
+  margin-bottom: 32px;
+  color: #fff;
+  font-size: 24px;
+}
+
+.complete {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.todo-form {
+  margin-bottom: 32px;
+}
+
+.todo-input {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #b8b7bb;
+  outline: none;
+  width: 320px;
+  background: transparent;
+  color: #fff;
+}
+
+.todo-input::placeholder {
+  color: #e2e2e2;
+}
+
+.todo-button {
+  padding: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+    rgb(112, 112, 116) 0%,
+    rgb(36, 17, 49) 50%
+  );
+  color: rgb(177, 180, 202);
+  text-transform: capitalize;
+}
+
+.todo-input.edit {
+  border: 2px solid #149fff;
+}
+
+.todo-button.edit {
+  background: linear-gradient(
+    90deg,
+    rgba(20, 159, 255, 1) 0%,
+    rgba(17, 122, 255, 1) 100%
+  );
+  padding: 16px 22px;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.todo-row {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 4px auto;
+  color: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgb(250, 241, 192) 0%,
+    rgb(99, 87, 24) 100%
+  );
+
+  padding: 16px;
+  border-radius: 5px;
+  width: 90%;
 }
 
-.App-link {
-  color: #61dafb;
+.todo-row:nth-child(4n + 1) {
+  background: linear-gradient(
+    90deg,
+    rgb(250, 250, 250) 0%,
+    rgb(0, 0, 0) 100%
+  );
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todo-row:nth-child(4n + 2) {
+  background: linear-gradient(
+    90deg,
+    rgb(184, 164, 183) 0%,
+    rgb(44, 26, 36) 100%
+  );
+}
+
+.todo-row:nth-child(4n + 3) {
+  background: linear-gradient(
+    90deg,
+    rgb(191, 240, 219) 0%,
+    rgb(17, 95, 47) 100%
+  );
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.delete-icon {
+  margin-right: 5px;
+  color: rgb(235, 159, 159);
+}
+
+.edit-icon {
+  color: rgb(150, 160, 248);
+}
+
+.images figure img{
+  margin-top: 10px;
+  height: 50px;
+  width: auto;
+}
+.filter-svg{
+        filter: invert(77%) sepia(50%) saturate(298%) hue-rotate(349deg) brightness(91%) contrast(94%);
+}
+
+
+.animation {
+  --uismLinkDisplay: var(--smLinkDisplay, inline-flex);
+  height: 50px;
+  width: 150px;
+  background-color: #cecece;
+  text-align: center;
+  color: rgb(71, 11, 11);
+  font-size: 15px;
+  font-weight: bolder;
+  outline: dotted 2px rgb(0, 0, 0);
+  position: relative;
+  transition-duration: 0.4s;
+  overflow: hidden;
+}
+
+.animation::before,
+.animation span {
+  margin: 0 auto;
+  transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  transition-duration: 0.4s;
+}
+.animation:hover {
+  background-color: rgb(71, 11, 11);
+  outline: dotted 2px rgb(245, 201, 120);
+}
+
+.animation:hover span {
+  -webkit-transform: translateY(-400%) scale(-0.1, 20);
+  transform: translateY(-400%) scale(-0.1, 20);
+}
+
+.animation::before {
+  content: attr(data-sm-link-text);
+  color: #cecece;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  -webkit-transform: translateY(500%) scale(-0.1, 20);
+  transform: translateY(500%) scale(-0.1, 20);
+}
+
+.animation:hover::before {
+  letter-spacing: 0.05em;
+  -webkit-transform: translateY(0) scale(1, 1);
+  transform: translateY(0) scale(1, 1);
 }
